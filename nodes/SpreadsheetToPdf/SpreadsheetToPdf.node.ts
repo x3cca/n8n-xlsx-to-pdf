@@ -390,6 +390,8 @@ function sanitizeFileName(fileName: string): string {
 
 function runProcess(executable: string, args: string[], timeoutMs: number): Promise<ProcessResult> {
 	return new Promise((resolve, reject) => {
+		// This node must launch LibreOffice to perform the spreadsheet conversion.
+		// eslint-disable-next-line @n8n/community-nodes/no-dangerous-functions -- LibreOffice is the required conversion engine.
 		const childProcess = spawn(executable, args, { windowsHide: true });
 		let stdout = '';
 		let stderr = '';
